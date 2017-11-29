@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "cache.h"
 
 // initialize the cache by allocating space for all of the cache
@@ -25,13 +26,15 @@ init_cache(cache_t *cache) {
 // given an address, extract the tag field 
 unsigned 
 address_to_tag(unsigned address) {
-  return 0;   // FIXME
+  unsigned index_bits = log2(BLOCK_SIZE);
+  return address >> index_bits;
 }
 
 // given an address, extract the index field 
 unsigned 
 address_to_index(unsigned address) {
-  return 0;   // FIXME
+  unsigned index_bits = log2(BLOCK_SIZE);
+  return address & ((int)pow(2,index_bits)-1);
 }
 
 // Given an address, look up in cache "cache" to see if that
