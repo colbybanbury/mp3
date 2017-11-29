@@ -11,18 +11,18 @@ int main(void){
   printf("----- address_to_tag -----\n");
   for(i=0;i<4;i++){
     buffer = itoa(nums[i],2);
-    printf("address: %s\n", buffer);
+    printf("address: %08s\n", buffer);
     buffer = itoa(address_to_tag(nums[i]), 2);
-    printf("tag: %s\n", buffer);
+    printf("tag:     %08s\n", buffer);
   }
 
 
   printf("----- address_to_index -----\n");
   for(i=0;i<4;i++){
     buffer = itoa(nums[i],2);
-    printf("address: %s\n", buffer);
+    printf("address: %08s\n", buffer);
     buffer = itoa(address_to_index(nums[i]), 2);
-    printf("index: %s\n", buffer);
+    printf("index:   %08s\n", buffer);
   }
 
   return 0;
