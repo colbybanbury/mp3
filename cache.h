@@ -1,5 +1,5 @@
-#define BLOCK_SIZE 1   // FIXME
-#define NUM_SETS   1   // FIXME
+#define BLOCK_SIZE 64
+#define NUM_SETS   500
 
 typedef struct cache_block {
   unsigned tag;
@@ -21,4 +21,5 @@ typedef struct cache {
   unsigned writebacks;
 } cache_t;
 
-
+unsigned address_to_tag(unsigned address);
+unsigned address_to_index(unsigned address);
