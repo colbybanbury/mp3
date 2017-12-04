@@ -49,10 +49,14 @@ find_block_and_update_lru(cache_t *cache, unsigned address, bool write) {
   cache->accesses++;
   
   // FIXME
-  if(cache->sets[index].blocks[0].tag == tag || \
-     cache->sets[index].blocks[1].tag == tag){
+  if(cache->sets[index].blocks[0].tag == tag){
     cache->hits++;
-    
+    cache->sets[index].lru = 1;
+    return true;
+  }
+  if(cache->sets[index].blocks[1].tag == tag){
+    cache->hits++;
+    cache->sets[index].lru = 0;
     return true;
   }
 
@@ -67,5 +71,5 @@ fill_cache_with_block(cache_t *cache, unsigned address, bool write) {
   unsigned tag = address_to_tag(address);
   unsigned index = address_to_index(address);
 
-  // FIXME
+  
 }
