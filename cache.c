@@ -26,15 +26,17 @@ init_cache(cache_t *cache) {
 // given an address, extract the tag field 
 unsigned 
 address_to_tag(unsigned address) {
-  unsigned index_bits = log2(BLOCK_SIZE);
-  return address >> index_bits;
+  unsigned index_bits = log2(NUM_SETS);
+  unsigned offset_bits = log2(BLOCK_SIZE); 
+  return address >> (index_bits + offset_bits);
 }
 
 // given an address, extract the index field 
 unsigned 
 address_to_index(unsigned address) {
-  unsigned index_bits = log2(BLOCK_SIZE);
-  return address & ((int)pow(2,index_bits)-1);
+  unsigned index_bits = log2(NUM_SETS);
+  unsigned offset_bits = log2(BLOCK_SIZE);
+  return (address >> offset_bits) & ((int)pow(2,index_bits)-1);
 }
 
 // Given an address, look up in cache "cache" to see if that
@@ -44,8 +46,15 @@ bool
 find_block_and_update_lru(cache_t *cache, unsigned address, bool write) {
   unsigned tag = address_to_tag(address);
   unsigned index = address_to_index(address);
-
+  cache->accesses++;
+  
   // FIXME
+  if(cache->sets[index].blocks[0].tag == tag || \
+     cache->sets[index].blocks[1].tag == tag){
+    cache->hits++;
+    
+    return true;
+  }
 
   return false;  // FIXME: return true if we found the block and false if not
 }

@@ -1,5 +1,5 @@
 #define BLOCK_SIZE 64
-#define NUM_SETS   500
+#define NUM_SETS   256
 
 typedef struct cache_block {
   unsigned tag;
