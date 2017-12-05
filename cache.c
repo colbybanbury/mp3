@@ -75,6 +75,5 @@ fill_cache_with_block(cache_t *cache, unsigned address, bool write) {
   cache->sets[index].blocks[lru].valid = 1;
   cache->sets[index].blocks[lru].dirty = write;
   cache->sets[index].lru = !lru;
-  cache->accesses++;
   if(write){cache->writebacks++;}
-  }
+}

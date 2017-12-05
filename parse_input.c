@@ -28,6 +28,7 @@ main(int argc, char *argv[]) {
 
   // parse the trace, performing the accesses on the cache
   char type;
+
   unsigned address;
   char line[LINE_LENGTH];
   while (!feof(trace_file)) { // while we haven't gotten to the end
@@ -55,6 +56,10 @@ main(int argc, char *argv[]) {
 
   // output final statistics
   printf("Reached end of file\n");
-  printf("hits: %d, accesses: %d, hit rate: %.2f, writebacks: %d\n", 
-			cache.hits, cache.accesses, (100.0 * cache.hits)/cache.accesses, cache.writebacks);
+  printf("hits: %i, accesses: %i, hit rate: %.2f, writebacks: %i\n", 
+         cache.hits, \
+         cache.accesses, \
+         (100.0 * cache.hits)/cache.accesses,   \
+         cache.writebacks);
 }
+
