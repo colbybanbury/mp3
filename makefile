@@ -11,8 +11,8 @@ all: $(OBJS) $(MAIN)
 test:  $(TEST) $(OBJS)
 	$(CC) $(C_FLAGS) -o $@ $^
 run: all
-	for N in $(INPUT); do ./cache_sim $$N; done
+	for N in $(INPUT); do echo $$N; ./cache_sim $$N; done
 verbose: all
-	for N in $(INPUT); do ./cache_sim $$N verbose; done
+	for N in $(INPUT); do echo $$N; ./cache_sim $$N verbose; done
 clean:
 	rm *.o $(EXEC) test
