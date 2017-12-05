@@ -60,7 +60,7 @@ find_block_and_update_lru(cache_t *cache, unsigned address, bool write) {
     return true;
   }
 
-  return false;  // FIXME: return true if we found the block and false if not
+  return false;  
 }
 
 // This function should find the LRU block of the correct set and replace it 
