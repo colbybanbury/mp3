@@ -47,7 +47,7 @@ find_block_and_update_lru(cache_t *cache, unsigned address, bool write) {
   unsigned tag = address_to_tag(address);
   unsigned index = address_to_index(address);
   cache->accesses++;
-  
+  cache->writebacks += write;
   // FIXME
   if(cache->sets[index].blocks[0].tag == tag){
     cache->hits++;
@@ -75,5 +75,4 @@ fill_cache_with_block(cache_t *cache, unsigned address, bool write) {
   cache->sets[index].blocks[lru].valid = 1;
   cache->sets[index].blocks[lru].dirty = write;
   cache->sets[index].lru = !lru;
-  if(write){cache->writebacks++;}
 }
